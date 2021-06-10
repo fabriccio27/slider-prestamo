@@ -1,11 +1,13 @@
-const amountReducer = (state, action)=>{
+const amountReducer = (state={}, action)=>{
     switch(action.type){
         case "CHANGE_AMOUNT":
-            return action.amount;
+            return {
+                amount:action.amount,
+                slider:action.amount
+            }
         default:
             return state;
     }
-
 };
 
 export default amountReducer;

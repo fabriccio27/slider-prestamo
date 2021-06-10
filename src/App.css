@@ -1,11 +1,74 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgb(27, 27, 104);
+  color:white;
+  text-align:center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.cred-box {
+  width:40%;
+  border:1rem solid rgb(21, 21, 105);
+  padding:3rem 1rem;
+}
 .content-container {
   width:80%;
 }
 .slider-container {
-  margin:50px 0;
+  margin:50px auto;
+  width:90%;
+}
+.slider {
+  width:90%;
 }
 
+.fixed-fee {
+  text-align:center;
+  text-transform: uppercase;
+  background: rgb(21, 21, 105);
+  padding:0.9rem auto;
+  height:2rem;
+  
+}
+.fixed-fee__label{
+  background: inherit;
+  line-height: 2rem;
+}
+.fixed-fee__value {
+  background:inherit;
+  font-size:2rem;
+  font-weight: bold;
+  line-height: 2rem;
+}
+.bold-btn {
+  text-transform: uppercase;
+  border:none;
+  background: lightseagreen;
+  cursor: pointer;
+  margin:1.5rem auto; 
+  padding:1rem;
+  font-weight:bold;
+}
 
-
-
+@media (max-width:900px){
+  .cred-box {
+    width:90%;
+    padding:1rem
+  }
+  .fixed-fee {
+    height:auto;
+  }
+  .fixed-fee__value{
+    font-size:1rem;
+  }
+}
 
