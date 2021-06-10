@@ -1,53 +1,51 @@
 import 'rc-slider/assets/index.css';
 import Slider from "rc-slider";
-import React, {useState} from "react";
+import React, {useContext} from "react";
+import CredContext from "../context/cred-context";
 
-function InputAndSlider({minVal, maxVal}) {
-    const [amount, setAmount] = useState(minVal);
-    const [slideValue, setSlide] = useState(minVal);
+function InputAndSlider(props) {
+    const {dispatchA, dispatchAS, sliderVal, amount} = useContext(CredContext);
+    
 
+    const marks={};
+    marks[props.min]=props.min;
+    marks[props.max]=props.max;
+
+  
     const onSlideChange=(value)=>{
-        setAmount(value);
-        setSlide(value);
-      };
+        //usar prop "to", segun el valor, usar despachar a que estado
+        
+        dispatchA({
+            type:"CHANGE_AMOUNT",
+            amount:value
+        });
+        dispatchAS({
+            type:"CHANGE_SLIDER",
+            sliderVal:value
+        });
+        
+    }
 
     const onInputChange=(e)=>{
-        setAmount(parseInt(e.target.value));
-        setSlide(parseInt(e.target.value));
-      }
+        
+        dispatchA({
+            type:"CHANGE_AMOUNT",
+            amount:e.target.value
+        });
+        dispatchAS({
+            type:"CHANGE_SLIDER",
+            sliderVal:e.target.value
+        });
+
+        
+    }
+    
     return(
         <div className="slider-container">
             <input type="number" value={amount} placeholder="Input initial value" onChange={onInputChange}/>
-            <Slider min={minVal} value={slideValue} max={maxVal} onChange={onSlideChange} />
+            <Slider min={props.min} value={sliderVal} max={props.max} onChange={onSlideChange} marks={marks} /* onChange={onSlideChange} */ /> 
         </div>
     );
 };
 
-export {InputAndSlider};
-/* state = {
-    amount:this.props.min,
-    slideValue:this.props.min
-}
-
-onSlideChange=(value)=>{
-    this.setState(()=>{
-        return {
-            slideValue:value
-        }
-    })
-};
-onInputChange=(e)=>{
-  this.setState(()=>{
-      return {
-        slideValue:e.target.value
-      }
-  })
-}
-render(){
-    return(
-        <div>
-            <input type="number" value={this.state.amount} placeholder="Input initial value" onChange={this.onInputChange} />
-            <Slider step={1} min={this.props.min} value={this.state.slideValue} max={this.props.max} onMouseUp={this.onSlideChange} />
-        </div>
-    );
-}; */
+export default InputAndSlider;
